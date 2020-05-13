@@ -42,21 +42,31 @@ Airplane.prototype.land = function () {
 function Person( name, age) {
   this.name = name;
   this.age = age;
-  this.stomach = [];
+  this.stomach = [];                                                                        
 }
-Person.prototype.eat("someFood")=function () {
-  this.stomach = stomach;
+Person.prototype.eat = function (food) {
+  if (this.stomach.length >= 10) return;
+  this.stomach.push(food);
 };
-Person.prototype.eat=function () {
-  this.eat = stomach;
-};  
-Person.prototype.poop=function () {
-  this.poop = stomach;
-};  
-return toString`(${name} and ${age})`
+Person.prototype.poop = function () {
+  this.stomach = [];
+};
+Person.prototype.toString = function () {
+   return `${this.name}, ${this.age}`
+};
+// Person.prototype.eat("someFood")=function () {
+//   this.stomach = stomach;
+// };
+// Person.prototype.eat=function () {
+//   this.eat = stomach;
+// };  
+// Person.prototype.poop=function () {
+//   this.poop = stomach;
+// };  
+// return toString`(${name} and ${age})`
+// };
 
-};
-Person()
+
 
 /*
   TASK 2
@@ -72,9 +82,20 @@ Person()
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(models, milesPerGallon) {
+    this.tank = 0;
+    this.odometer = 0;
+    this.models = models;
+    this.milesPerGallon = milesPerGallon;
 }
+
+Car.prototype.fill= function (gallons) {
+  this.tank += gallons;
+};
+Car.prototype.drive = function (distance) {
+  this.odometer += distance;
+};
+
 
 /*
   TASK 3
@@ -83,18 +104,24 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype.play = function () {
+  return  'Playing with + ${this.favoriteToy}`;
+};
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Is the function called by 'new'?
+  2. Is the function called by call(), apply(), or bind()?
+  3. Is the function called as a method?
+  4. Is the function called in the global scope?
 */
 
 
